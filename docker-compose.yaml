@@ -1,0 +1,28 @@
+services:
+  oracle-db:
+    image: container-registry.oracle.com/database/free:latest # ใช้ :latest-lite สำหรับเวอร์ชัน Lite
+    container_name: oracle-db
+    ports:
+      - "1521:1521" # Oracle Listener Port
+    env_file:
+      - .env
+    volumes:
+      - oracle_data:/opt/oracle/oradata # เก็บข้อมูลถาวร
+      # - ./my-scripts:/opt/oracle/scripts/startup # (Optional) สำหรับรันสคริปต์ตอนเริ่มต้น
+    # secrets:
+    #   - oracle_pwd
+    #   - oracle_pwd_priv_key
+    healthcheck:
+      test: ["CMD", "bash", "-c", "status=$$(podman ps --format '{{.Status}}' | grep healthy); if [ -n \"$$status\" ]; then exit 0; else exit 1; f"]
+      interval: 30s
+      timeout: 10s
+      retries: 20
+
+volumes:
+  oracle_data:
+
+secrets:
+  oracle_pwd:
+    file: ./secrets/pwdfile.enc # พาธไปยังไฟล์รหัสผ่านที่เข้ารหัส
+  oracle_pwd_priv_key:
+    file: ./secrets/key.pub # พาธไปยังไฟล์ public key สำหรับถอดรหัส
