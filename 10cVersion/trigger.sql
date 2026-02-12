@@ -58,3 +58,5 @@ BEGIN SELECT po_detail_seq.NEXTVAL INTO :NEW.poDetailID FROM dual; END;
 CREATE OR REPLACE TRIGGER trg_receipt_detail_id BEFORE INSERT ON ReceiptDetail FOR EACH ROW
 BEGIN SELECT receipt_detail_seq.NEXTVAL INTO :NEW.receiptDetailID FROM dual; END;
 /
+
+-- DROP TRIGGER trigger_name cmd for drop trigger
