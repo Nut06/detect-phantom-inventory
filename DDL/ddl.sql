@@ -1,4 +1,3 @@
-DDL Script 
 -- 1. Part 
 CREATE TABLE Part (
     partID NUMBER,
