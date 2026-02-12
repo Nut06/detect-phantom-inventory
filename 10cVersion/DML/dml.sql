@@ -21,7 +21,7 @@ INSERT INTO Brand (brandName, discountRate) VALUES ('เลย์ (Lay''s)', 0);
 
 -- 5. CustomerType (ประเภทสมาชิก)
 INSERT INTO CustomerType (customerTypeName, discountRate) VALUES ('ลูกค้าทั่วไป', 0);
-INSERT INTO CustomerType (customerTypeName, discountRate) VALUES ('สมาชิก All Member', 2);
+INSERT INTO CustomerType (customerTypeName, discountRate) VALUES ('สมาชิก', 2);
 INSERT INTO CustomerType (customerTypeName, discountRate) VALUES ('ผู้ประกอบการ/ขายส่ง', 5);
 
 -- 6. Promotion (โปรโมชั่นหลัก)
@@ -33,22 +33,34 @@ INSERT INTO Package (packageName, price) VALUES ('Standard Box', 20);
 INSERT INTO Package (packageName, price) VALUES ('Bundle Set', 150);
 
 -- Master data with foreign key table
--- 8. Province (จังหวัด - ต้องใช้ partID)
-INSERT INTO Province (provinceName, partID, region) VALUES ('กรุงเทพมหานคร', 1, 'Central');
-INSERT INTO Province (provinceName, partID, region) VALUES ('เชียงใหม่', 2, 'North');
+-- 7. Province (จังหวัด - ไม่มีคอลัมน์ region แล้ว)
+-- สมมติภาคกลาง ID=1, ภาคตะวันออก ID=2
+INSERT INTO Province (provinceName, partID, createUser) VALUES ('กรุงเทพมหานคร', 1, 'system_admin');
+INSERT INTO Province (provinceName, partID, createUser) VALUES ('ชลบุรี', 2, 'system_admin');
 
--- 9. Branch (สาขา - ต้องใช้ provinceID)
-INSERT INTO Branch (branchName, provinceID) VALUES ('สาขาพารากอน', 1);
-INSERT INTO Branch (branchName, provinceID) VALUES ('สาขานิมมาน', 2);
+-- 8. Branch (สาขา)
+-- สมมติ กทม ID=1, ชลบุรี ID=2
+INSERT INTO Branch (branchName, provinceID, createUser) VALUES ('Lotus''s Go Fresh สุขุมวิท', 1, 'manager_01');
+INSERT INTO Branch (branchName, provinceID, createUser) VALUES ('7-Eleven สาขาหน้าหาดบางแสน', 2, 'manager_02');
 
--- 10. Customer (ลูกค้า - ต้องใช้ customerTypeID)
-INSERT INTO Customer (firstName, lastName, address, customerTypeID) 
-VALUES ('สมชาย', 'สายคอม', '123 ถ.วิภาวดี กรุงเทพฯ', 3);
-INSERT INTO Customer (firstName, lastName, address, customerTypeID) 
-VALUES ('สมหญิง', 'นักพัฒนา', '456 ถ.ห้วยแก้ว เชียงใหม่', 2);
+-- 9. Customer (ลูกค้า)
+-- สมมติสมาชิกทั่วไป ID=1, All Member ID=2
+INSERT INTO Customer (firstName, lastName, address, customerTypeID, createUser) 
+VALUES ('กมล', 'ใจดี', '123/4 เขตวัฒนา กทม.', 2, 'pos_01');
+INSERT INTO Customer (firstName, lastName, address, customerTypeID, createUser) 
+VALUES ('วิชัย', 'ขยันเรียน', '55 ม.2 ต.แสนสุข จ.ชลบุรี', 1, 'pos_01');
 
--- 11. Product (สินค้า - ต้องใช้ Brand, Category, Branch, Package)
-INSERT INTO Product (productName, price, cost, qty, brandID, categoryID, branchID, packageID) 
-VALUES ('ROG Zephyrus G14', 55000, 48000, 10, 1, 1, 1, 1);
-INSERT INTO Product (productName, price, cost, qty, brandID, categoryID, branchID, packageID) 
-VALUES ('Cisco Router C9200L', 120000, 95000, 5, 2, 2, 1, 2);
+-- 10. CustomerPhone (เบอร์โทรศัพท์ - Weak Entity)
+INSERT INTO CustomerPhone (customerID, phoneNumber) VALUES (1, '0812345678');
+INSERT INTO CustomerPhone (customerID, phoneNumber) VALUES (1, '029998888');
+INSERT INTO CustomerPhone (customerID, phoneNumber) VALUES (2, '0890001111');
+
+-- 11. Product (สินค้า)
+-- ค่า ID อ้างอิงตามลำดับการ Insert ด้านบน
+-- Product 1: มาม่าคัพ (Brand=1, Cat=1, Branch=1, Pkg=1)
+INSERT INTO Product (productName, price, cost, qty, brandID, categoryID, branchID, packageID, createUser) 
+VALUES ('มาม่าคัพ รสหมูสับ 60ก.', 15.00, 11.50, 200, 1, 1, 1, 1, 'inventory_mgr');
+
+-- Product 2: น้ำดื่มสิงห์ (Brand=2, Cat=2, Branch=1, Pkg=1)
+INSERT INTO Product (productName, price, cost, qty, brandID, categoryID, branchID, packageID, createUser) 
+VALUES ('น้ำดื่มสิงห์ 600มล.', 7.00, 4.25, 500, 2, 2, 1, 1, 'inventory_mgr');
