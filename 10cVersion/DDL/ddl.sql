@@ -10,7 +10,6 @@ CREATE TABLE Province (
     provinceID NUMBER,
     provinceName VARCHAR2(100) CONSTRAINT nn_prov_name NOT NULL,
     partID NUMBER,
-    region VARCHAR2(50),
     createdAt DATE DEFAULT SYSDATE,
     createUser VARCHAR2(50),
     updatedAt DATE,
