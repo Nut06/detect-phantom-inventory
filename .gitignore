@@ -1,3 +1,7 @@
 secrets/
 .env
 .env.*
+
+backend/node_modules
+
+backend/dist
