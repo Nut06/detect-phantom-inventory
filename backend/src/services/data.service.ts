@@ -1,5 +1,6 @@
 import { getConnection } from '../config/db.config.js';
 
+//เทสแบบ รวมทุกตาราง
 export const getAllData = async () => {
   const connection = await getConnection();
   try {
@@ -51,3 +52,33 @@ export const getAllData = async () => {
     await connection.close();
   }
 };
+
+
+//เทสแบบแยกตาราง
+const queryAll = async (table: string) => {
+  const connection = await getConnection();
+  try {
+    const result = await connection.execute(`SELECT * FROM ${table}`);
+    return result.rows;
+  } finally {
+    await connection.close();
+  }
+};
+
+export const getProducts = () => queryAll('PRODUCT');
+export const getCustomers = () => queryAll('CUSTOMER');
+export const getReceipts = () => queryAll('RECEIPT');
+export const getPurchaseOrders = () => queryAll('PURCHASEORDER');
+export const getReceiptDetails = () => queryAll('RECEIPTDETAIL');
+export const getPurchaseOrderDetails = () => queryAll('PURCHASEORDERDETAIL');
+export const getSuppliers = () => queryAll('SUPPLIER');
+export const getCategories = () => queryAll('CATEGORY');
+export const getBrands = () => queryAll('BRAND');
+export const getBranches = () => queryAll('BRANCH');
+export const getProvinces = () => queryAll('PROVINCE');
+export const getParts = () => queryAll('PART');
+export const getPackages = () => queryAll('PACKAGE');
+export const getCustomerTypes = () => queryAll('CUSTOMERTYPE');
+export const getCustomerPhones = () => queryAll('CUSTOMERPHONE');
+export const getPromotions = () => queryAll('PROMOTION');
+export const getPromotionDetails = () => queryAll('PROMOTIONDETAIL');
