@@ -3,7 +3,7 @@ import express, { type Request, type Response} from 'express';
 import fs from 'fs';
 import path from 'path';
 import csv from 'csv-parser';
-import { ProductData } from './types/product.type';
+import { ProductData } from './types/product.type.js';
 
 const app = express();
 const PORT = 3000;
