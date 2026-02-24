@@ -1,6 +1,8 @@
 import oracledb from 'oracledb';
 import { env } from './env.config.js';
 
+oracledb.initOracleClient({ libDir: 'C:\\instantclient_19_30' });
+
 export const getConnection = async () => {
   const connection = await oracledb.getConnection({
     user: env.db.user,
