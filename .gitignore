@@ -6,4 +6,4 @@ backend/node_modules
 
 backend/dist
 
-src/seeds/
+backend/src/seeds/
