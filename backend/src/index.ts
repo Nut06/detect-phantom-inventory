@@ -5,6 +5,8 @@ import path from 'path';
 import csv from 'csv-parser';
 // import { ProductData } from './types/product.type.js';
 
+import dataRouter from './routes/data.route.js';
+
 const app = express();
 const PORT = 3000;
 
@@ -26,6 +28,8 @@ const PORT = 3000;
 //       res.status(500).json({ status: 'error', message: err.message });
 //     });
 //  });
+
+app.use('/api/data', dataRouter);
 
  app.listen(PORT, () => {
     console.log(`Server is running at ${PORT}`);
