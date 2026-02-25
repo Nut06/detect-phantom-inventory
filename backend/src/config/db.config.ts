@@ -1,8 +1,11 @@
 import oracledb from 'oracledb';
 import { env } from './env.config.js';
 
-oracledb.initOracleClient({ libDir: 'C:\\instantclient_19_30' });
+// oracledb.initOracleClient({ libDir: 'C:\\instantclient_19_30' }); //local dev
+oracledb.initOracleClient({ libDir: '/opt/oracle/instantclient_19_30' });
+
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
+
 
 export const getConnection = async () => {
   const connection = await oracledb.getConnection({
@@ -11,4 +14,4 @@ export const getConnection = async () => {
     connectString: `${env.db.host}:${env.db.port}/${env.db.serviceName}`
   });
   return connection;
-};
+};  
