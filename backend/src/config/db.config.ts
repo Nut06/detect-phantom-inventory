@@ -6,12 +6,17 @@ oracledb.initOracleClient({ libDir: '/opt/oracle/instantclient_19_30' });
 
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 
-
-export const getConnection = async () => {
-  const connection = await oracledb.getConnection({
+export const initPool = async () => {
+  await oracledb.createPool({
     user: env.db.user,
     password: env.db.password,
-    connectString: `${env.db.host}:${env.db.port}/${env.db.serviceName}`
+    connectString: `${env.db.host}:${env.db.port}/${env.db.serviceName}`,
+    poolMin: 1,
+    poolMax: 4,
+    poolIncrement: 1,
   });
-  return connection;
-};  
+};
+
+export const getConnection = async () => {
+  return await oracledb.getConnection();
+};

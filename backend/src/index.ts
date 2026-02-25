@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import csv from 'csv-parser';
 // import { ProductData } from './types/product.type.js';
-
+import { initPool } from './config/db.config.js';
 import dataRouter from './routes/data.route.js';
 
 const app = express();
@@ -30,7 +30,8 @@ const PORT = 3000;
 //  });
 
 app.use('/api/data', dataRouter);
+await initPool();
 
- app.listen(PORT, () => {
+app.listen(PORT, () => {
     console.log(`Server is running at ${PORT}`);
  })
