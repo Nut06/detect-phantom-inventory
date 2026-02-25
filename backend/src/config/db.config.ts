@@ -1,7 +1,7 @@
 import oracledb from 'oracledb';
 import { env } from './env.config.js';
 
-// oracledb.initOracleClient({ libDir: 'C:\\instantclient_19_30' }); //local dev
+//oracledb.initOracleClient({ libDir: 'C:\\instantclient_19_30' }); //local dev
 oracledb.initOracleClient({ libDir: '/opt/oracle/instantclient_19_30' });
 
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
