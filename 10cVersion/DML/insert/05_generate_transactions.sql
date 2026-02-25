@@ -36,6 +36,11 @@ BEGIN
                     p_qty => v_po_qty,
                     p_costPerUnit => p.cost * DBMS_RANDOM.VALUE(0.9, 1.1) -- Cost fluctuates +-10%
                 );
+                
+                -- Hack: Randomize the Purchase Date for the last inserted PO (since SP defaults to SYSDATE)
+                UPDATE PurchaseOrder SET purchaseDate = SYSDATE - TRUNC(DBMS_RANDOM.VALUE(0, 90))
+                WHERE purchaseOrderID = (SELECT MAX(purchaseOrderID) FROM PurchaseOrder);
+                
                 v_po_count := v_po_count + 1;
             EXCEPTION
                 WHEN OTHERS THEN
@@ -67,6 +72,11 @@ BEGIN
                     p_productID => p.productID,
                     p_qty => v_rcpt_qty
                 );
+                
+                -- Hack: Randomize the Receipt Date for the last inserted Receipt
+                UPDATE Receipt SET receiptDate = SYSDATE - TRUNC(DBMS_RANDOM.VALUE(0, 90))
+                WHERE receiptID = (SELECT MAX(receiptID) FROM Receipt);
+                
                 v_rcpt_count := v_rcpt_count + 1;
             EXCEPTION
                 WHEN OTHERS THEN
