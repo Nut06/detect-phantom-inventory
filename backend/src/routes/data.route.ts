@@ -28,4 +28,10 @@ router.get('/dw/fact-sales', dataController.getFactSales);
 router.get('/dw/fact-purchase', dataController.getFactPurchase);
 router.get('/dw/fact-phantom-inventory', dataController.getFactPhantomInventory);
 
+router.get('/dw/dim-product', dataController.getDimProduct);
+router.get('/dw/dim-location', dataController.getDimLocation);
+router.get('/dw/dim-customer', dataController.getDimCustomer);
+router.get('/dw/dim-supplier', dataController.getDimSupplier);
+router.get('/dw/dim-datetime', dataController.getDimDatetime);
+
 export default router;

@@ -43,3 +43,9 @@ export const getPromotionDetails = handleQuery(dataService.getPromotionDetails);
 export const getFactSales = handleQuery(dataService.getFactSales);
 export const getFactPurchase = handleQuery(dataService.getFactPurchase);
 export const getFactPhantomInventory = handleQuery(dataService.getFactPhantomInventory);
+
+export const getDimProduct = handleQuery(dataService.getDimProduct);
+export const getDimLocation = handleQuery(dataService.getDimLocation);
+export const getDimCustomer = handleQuery(dataService.getDimCustomer);
+export const getDimSupplier = handleQuery(dataService.getDimSupplier);
+export const getDimDatetime = handleQuery(dataService.getDimDatetime);

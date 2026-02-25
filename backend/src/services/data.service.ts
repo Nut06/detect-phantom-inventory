@@ -88,3 +88,9 @@ export const getPromotionDetails = () => queryAll('PROMOTIONDETAIL');
 export const getFactSales = () => queryAll('FACT_SALES');
 export const getFactPurchase = () => queryAll('FACT_PURCHASE');
 export const getFactPhantomInventory = () => queryAll('FACT_PHANTOM_INVENTORY');
+
+export const getDimProduct = () => queryAll('DIM_PRODUCT');
+export const getDimLocation = () => queryAll('DIM_LOCATION');
+export const getDimCustomer = () => queryAll('DIM_CUSTOMER');
+export const getDimSupplier = () => queryAll('DIM_SUPPLIER');
+export const getDimDatetime = () => queryAll('DIM_DATETIME');
