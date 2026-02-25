@@ -82,3 +82,9 @@ export const getCustomerTypes = () => queryAll('CUSTOMERTYPE');
 export const getCustomerPhones = () => queryAll('CUSTOMERPHONE');
 export const getPromotions = () => queryAll('PROMOTION');
 export const getPromotionDetails = () => queryAll('PROMOTIONDETAIL');
+
+
+//From DW
+export const getFactSales = () => queryAll('FACT_SALES');
+export const getFactPurchase = () => queryAll('FACT_PURCHASE');
+export const getFactPhantomInventory = () => queryAll('FACT_PHANTOM_INVENTORY');

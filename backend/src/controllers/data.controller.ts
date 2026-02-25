@@ -38,3 +38,8 @@ export const getCustomerTypes = handleQuery(dataService.getCustomerTypes);
 export const getCustomerPhones = handleQuery(dataService.getCustomerPhones);
 export const getPromotions = handleQuery(dataService.getPromotions);
 export const getPromotionDetails = handleQuery(dataService.getPromotionDetails);
+
+//from DW
+export const getFactSales = handleQuery(dataService.getFactSales);
+export const getFactPurchase = handleQuery(dataService.getFactPurchase);
+export const getFactPhantomInventory = handleQuery(dataService.getFactPhantomInventory);

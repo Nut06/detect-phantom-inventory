@@ -23,4 +23,9 @@ router.get('/customer-phones', dataController.getCustomerPhones);
 router.get('/promotions', dataController.getPromotions);
 router.get('/promotion-details', dataController.getPromotionDetails);
 
+//DW
+router.get('/dw/fact-sales', dataController.getFactSales);
+router.get('/dw/fact-purchase', dataController.getFactPurchase);
+router.get('/dw/fact-phantom-inventory', dataController.getFactPhantomInventory);
+
 export default router;
